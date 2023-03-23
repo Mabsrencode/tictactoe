@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Teko&display=swap');
+:root{
+    --white-color: #F9F9F9;
+    --black-color: #181818;
+    --bg-color: #F2E7D5;
+    --accent-color: #4a4741;
+    --darken-accent-color: #2b2926;
+    --h1-font-size: 5rem;
+    --primary-font: 'Open Sans', sans-serif;
+    --secondary-font: 'Teko', sans-serif;
+}
+*,*::before,*::after{
+    margin: 0;
+    padding: 0; 
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+}
+body{
+    font-family: var(--primary-font);
+    color: var(--black-color);
+    background-color: #F2E7D5;
+}
+h1,h2{
+    font-family: var(--secondary-font);
+    font-size: var(--h1-font-size);
+}
+#main-header{
+    background-color: var(--accent-color);
+    color: var(--white-color);
+    padding: 2rem 5%;
+    text-align: center;
+}
+#main-header img{
+    width: 7rem;
+    margin-bottom: 10px;
+}
+#main-header .title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+button{
+    font: inherit;
+    padding: 0.5rem 1.5rem;
+    background-color: var(--accent-color);
+    border: none;
+    color: var(--white-color);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 200ms;
+}
+.btn-alt{
+    background-color: transparent;
+    border-color: transparent;
+    color: var(--accent-color);
+    transition: 200ms;
+}
+button:hover{
+    background-color: var(--darken-accent-color);
+    border-color: var(--darken-accent-color); 
+}
+.btn-alt:hover{
+    color: var(--white-color);
+}

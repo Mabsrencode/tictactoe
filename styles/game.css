@@ -1,0 +1,100 @@
+#active-game {
+    text-align: center;
+    margin: 2rem 0 5rem 0;
+    display: none;
+}
+
+#game-over {
+    width: 90%;
+    max-width: 40rem;
+    margin: auto;
+    padding: 1rem 2rem;
+    background-color: var(--darken-accent-color);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    color: var(--white-color);
+    display: none;
+}
+
+#game-over h2 {
+    margin: 0.5rem 0;
+}
+
+#active-player-name {
+    font-weight: bold;
+}
+
+#game-board {
+    position: relative;
+    display: grid;
+    margin: 1rem 0;
+    grid-template-columns: repeat(3, 6rem);
+    grid-template-rows: repeat(3, 6rem);
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+#game-board li {
+    background-color: var(--darken-accent-color);
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--white-color);
+}
+
+#game-board li:hover {
+    background-color: #1a1816;
+}
+
+#game-board li.disabled {
+    background-color: #1a1816;
+    cursor: default;
+}
+
+.wiggle-error {
+    animation: wiggle 500ms linear alternate;
+}
+
+@keyframes wiggle {
+    0% {
+        left: 0;
+        bottom: 0;
+    }
+    15%{
+        left: 3px;
+        bottom: 3px;
+    }
+
+    25% {
+        left: -3px;
+        bottom: -3px;
+    }
+    35%{
+        left: 3px;
+        bottom: 3px;
+    }
+    50% {
+        left: -3px;
+        bottom: -3px;
+    }
+    65%{
+        left: 3px;
+        bottom: 3px;
+    }
+    75% {
+        left: -3px;
+        bottom: -3px;
+    }
+    85%{
+        left: 3px;
+        bottom: 3px;
+    }
+    100% {
+        left: 0;
+        bottom: 0;
+    }
+}

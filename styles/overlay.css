@@ -1,0 +1,84 @@
+.modal{
+    position: fixed;
+    top: 25%;
+    left: 5%;
+    width: 90%;
+    background-color: var(--white-color);
+    padding: 1rem;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    display: none;
+    z-index: 1;
+}
+#backdrop{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: none;
+}
+#config-error{
+    margin: 1rem;
+    color: rgb(216, 37, 37);
+}
+#warning-input{
+    z-index: 1;
+    position: fixed;
+    color: rgb(216, 37, 37);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    background-color: var(--white-color);
+    padding: 1rem 1.5rem;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    display: none;
+}
+#warning-input h3{
+    margin-bottom: 2rem;
+}
+#error-background{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    animation: error-background 200ms linear alternate;
+    display: none;
+}
+@keyframes error-background{
+    0%{
+        background-color: transparent;
+    }
+    15%{
+        background-color: rgba(216, 37, 37, 0.2);
+    }
+    25%{
+        background-color: transparent;
+    }
+    35%{
+        background-color: rgba(216, 37, 37, 0.2);
+    }
+    50%{
+        background-color: transparent;
+    }
+    65%{
+        background-color: rgba(216, 37, 37, 0.2);
+    }
+    75%{
+        background-color: transparent;
+    }
+    85%{
+        background-color: rgba(216, 37, 37, 0.2);
+    }
+    100%{
+        background-color: transparent;
+    }
+}
+@media (min-width: 48rem) {
+    .modal{
+        left: calc(50% - 20rem);
+        width: 40rem;
+    }
+}
