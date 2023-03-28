@@ -1,1 +1,2 @@
-# tictactoe
+# tictactoe game
+resposive design
