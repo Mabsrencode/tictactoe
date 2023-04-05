@@ -1,95 +1,572 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TIC TAC TOE</title>
-    <link rel="icon" type="image/x-icon" href="assets/tictactoe.png" />
-    <link rel="stylesheet" href="styles/style.css" />
-    <link rel="stylesheet" href="styles/overlay.css" />
-    <link rel="stylesheet" href="styles/config.css" />
-    <link rel="stylesheet" href="styles/game.css" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+	<meta name="keywords" content="Front-end Web Developer, Front-end Web Designer, Portfolio Website, Portfolio">
+	<meta name="author" content="Reniel George Mababa">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--<meta name="color-scheme" content="dark light">-->
+    <title>MabsrenCode</title>
+    <link rel="icon" type="image/x-icon" media="(prefers-color-scheme: no-preference)" href="./images/favicon-light.png">
+    <link rel="icon" type="image/x-icon" media="(prefers-color-scheme: light)" href="./images/favicon-light.png">
+    <link rel="icon" type="image/x-icon" media="(prefers-color-scheme: dark)" href="./images/favicon-dark.png">
+    <!------scripts------->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/scrollReveal.js/4.0.9/scrollreveal.min.js" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js" integrity="sha512-8E3KZoPoZCD+1dgfqhPbejQBnQfBXe8FuwL4z/c8sTrgeDMFEnoyTlH3obB4/fV+6Sg0a0XF+L/6xS4Xx1fUEg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/debug.addIndicators.min.js" integrity="sha512-RvUydNGlqYJapy0t4AH8hDv/It+zKsv4wOQGb+iOnEfa6NnF2fzjXgRy+FDjSpMfC3sjokNUzsfYZaZ8QAwIxg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!------scripts------->
+    <!-------css------->
+    <link rel="stylesheet" href="./css/shared-style.css" type="text/css">
+    <link rel="stylesheet" href="./css/home-style.css" type="text/css">
+    <link rel="stylesheet" href="./css/about-style.css" type="text/css">
+    <link rel="stylesheet" href="./css/projects-style.css" type="text/css">
+    <link rel="stylesheet" href="./css/contact-style.css" type="text/css">
+    <!-- <link rel="stylesheet" href="./css/responsive.css" type="text/css"> -->
+    <!-------css------->
 
-    <script src="scripts/config.js" defer></script>
-    <script src="scripts/game.js" defer></script>
-    <script src="scripts/app.js" defer></script>
-  </head>
-  <body>
-    <div id="backdrop"></div>
-    <div id="error-background"></div>
-    <header id="main-header">
-      <div class="title">
-        <img src="assets/tictactoe.png" alt="" />
-        <h1>Play TIC TAC TOE</h1>
-      </div>
-      <p>Built with HTML, CSS, JavaScript.</p>
-      <p>Made by MabsrenCode.</p>
-    </header>
-    <main>
-      <aside class="modal" id="config-overlay">
-        <h2>Enter your name</h2>
-        <form>
-          <div class="input-area">
-            <label for="playername">Player name</label>
-            <input type="text" name="playername" id="playername" />
-          </div>
-          <p id="config-error"></p>
-          <div class="form-button">
-            <button type="reset" class="btn-alt" id="cancel-config-btn">
-              Cancel
-            </button>
-            <button type="submit">Confirm</button>
-          </div>
-        </form>
-      </aside>
-      <div id="warning-input">
-        <h3>Please ENTER a name to start a new game!</h3>
-        <button id="warning-okay-btn">Okay</button>
-      </div>
-      <section id="game-configuration">
-        <ol id="game-players">
-          <li>
-            <article id="player-1-data">
-              <h2>Player 1</h2>
-              <h3>PLAYER NAME</h3>
-              <p class="player-symbol">X</p>
-              <button class="btn-alt" id="edit-player-1-btn" data-playerid="1">
-                Edit
-              </button>
-            </article>
-          </li>
-          <li>
-            <article id="player-2-data">
-              <h2>Player 2</h2>
-              <h3>PLAYER NAME</h3>
-              <p class="player-symbol">O</p>
-              <button class="btn-alt" id="edit-player-2-btn" data-playerid="2">
-                Edit
-              </button>
-            </article>
-          </li>
-        </ol>
-        <button id="start-game-btn">Start New Game</button>
-      </section>
-      <section id="active-game">
-        <article id="game-over">
-          <h2>You won, <span id="winner-name">PLAYER NAME</span>!</h2>
-          <p>Click "Start New Game" above, to start a new game!</p>
-        </article>
-        <p>it's your turn <span id="active-player-name">PLAYER NAME</span>!</p>
-        <ol id="game-board">
-          <li data-col="1" data-row="1"></li>
-          <li data-col="2" data-row="1"></li>
-          <li data-col="3" data-row="1"></li>
-          <li data-col="1" data-row="2"></li>
-          <li data-col="2" data-row="2"></li>
-          <li data-col="3" data-row="2"></li>
-          <li data-col="1" data-row="3"></li>
-          <li data-col="2" data-row="3"></li>
-          <li data-col="3" data-row="3"></li>
-        </ol>
-      </section>
-    </main>
-  </body>
+</head>
+<body>
+
+    
+    <!----custom cursor start-->
+    
+    <!---------------cursor end--------------->
+    <!---------------HEADER NAVBAR START------------------->
+<!---------background-black start-->
+
+<!-------------HOME PAGE-->
+<div id="center-screen" class="ms-container ms-default">
+    <!-- <div class="background-left"><img class="background-img-left" src="../images/background-left.png" alt=""></div>
+    <div class="background-right"><img class="background-img-right" src="../images/background-right.png" alt=""></div>		 -->
+    <section id="home-section">
+                
+                        <nav class="nav">
+                            <div class="logo logo-home">
+                                <img src="./images/logo-light.png" alt="Logo">
+                            </div>
+                            <div class="hamburger hamburger-home">
+                                <div class="line1"></div>
+                                <div class="line2"></div>
+                                <div class="line3"></div>
+                            </div>
+                                <ul class="navbar navbar-home">
+                                    <li>
+                                        <a href="javascript:void(0)">Home</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0)" class="ms-nav-link" data-ms-target="top-screen" data-ms-exit-animation="bottomleft" data-ms-enter-animation="topright">About</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0)" class="ms-nav-link" data-ms-target="right-screen" data-ms-exit-animation="bottomright" data-ms-enter-animation="bottomleft">Projects</a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0)" class="ms-nav-link" data-ms-target="left-screen" data-ms-exit-animation="right" data-ms-enter-animation="left">Contact</a>
+                                    </li>
+                                </ul>
+                            
+                        </nav>
+                
+                     <!---------------HEADER NAVBAR END------------------->
+                    <!---------------------SECTION Home START----------------------->
+                    <!------loading screen start-->
+                <div class="loading-animation">
+                    <div class="loading">
+                        <span class="loader"><span class="loader-inner"></span></span>
+                        <div id="number"></div>    
+                    </div>
+                    <div class="backgroundwhite"></div>
+                </div>
+                    <!------loading screen end-->
+                    <!----container start-------------------->
+                <div class="container">
+                    <!---------------header start-->
+                    <div class="header">
+                        <div class="wrapper1">
+                            <h2 class="glitch1" data-text="Front-End">Front-End</h2><p class="paragraph paragraph1">I am an amateur Front-End Web Developer and UI Designer.</p>
+                        </div>
+                        <div class="wrapper2">
+                            <p class="paragraph paragraph2">Focus on creating things with interactions and animations.
+                                With a knack for turning problems and opportunities into user-driven strategic solutions with delightful and intuitive interface design.</p><h2 class="glitch2" data-text="Developer">Developer</h2>
+                        </div> 
+                        
+                    </div>
+                    <div class="wrapper3"><p>I am an amateur Front-End Web Developer and UI Designer. Focus on creating things with interactions and animations.
+                            With a knack for turning problems and opportunities into user-driven strategic solutions with delightful and intuitive interface design.</p>
+                    </div>
+                    <div class="skills-icon-home">
+                        <!-- <ul>
+                            <li><i class="fa-brands fa-html5"></i></li>
+                            <li><i class="fa-brands fa-css3-alt"></i></li>
+                            <li><i class="fa-brands fa-square-js"></i></li>
+                            <li><i class="fa-brands fa-react"></i></li>
+                            <li><i class="fa-brands fa-git-alt"></i></li>
+                            <li><i class="fa-brands fa-figma"></i></li>
+                        </ul> -->
+                        <marquee scrolldelay="60" behavior="scroll" direction="left"><i class="fa-brands fa-html5"></i></i>
+                            <i class="fa-brands fa-react"></i><i class="fa-brands fa-git-alt"></i><i class="fa-brands fa-figma"></i>
+                            <i class="fa-brands fa-java"></i><i class="fa-brands fa-sass"></i><i class="fa-brands fa-laravel"></i><i class="fa-brands fa-node"></i><i class="fa-brands fa-square-js"></i><i class="fa-brands fa-php"></i>
+                            <i class="fa-brands fa-css3-alt"></i><i class="fa-brands fa-vuejs"></i><i class="fa-brands fa-bootstrap"></i></marquee>
+                        <!-- <marquee scrolldelay="70" behavior="scroll" direction="right"><i class="fa-brands fa-node"></i><i class="fa-brands fa-square-js"></i><i class="fa-brands fa-php"></i>
+                            <i class="fa-brands fa-css3-alt"></i><i class="fa-brands fa-vuejs"></i><i class="fa-brands fa-bootstrap"></i></marquee> -->
+                    </div>
+                    <!---------------header end-->
+                <!---------paragraph start------->
+                    <!-- <div class="paragraph">
+                        <div class="sentence1">
+                            <div class="focus-text"><p>Focus on creating things with interactions and animations.
+                                With a knack for turning problems and opportunities into user-driven strategic solutions with delightful and intuitive interface design.</p></div>
+                        </div>
+                         <div class="sentence2">
+                            <div class="amateur-text"><p>I am an amateur Front-End Web Developer and UI Designer</p></div>
+                        </div>
+                    </div> -->
+                <!---------paragraph end------->
+                </div>
+                <!----container end-------------------->
+                <!---------------------SECTION home END----------------------->
+                <footer class="home-footer">
+                        <ul class="socials">
+                            <li><a href="#" target="_blank"><i class="fa-brands fa-facebook"></i></a></li>
+                            <li><a href="https://github.com/Mabsrencode" target="_blank"><i class="fa-brands fa-github"></i></a></li>
+                            <li><a href="https://www.linkedin.com/in/reniel-george-mababa-96a1a223b/" target="_blank"><i class="fa-brands fa-linkedin"></i></a></li>
+                            <li><a href="#" target="_blank"><i class="fa-brands fa-square-twitter"></i></a></li>
+                        </ul>
+                        <div class="copyright">
+                            <p>Copyright &copy;2023 MabsrenCode. All rights reserved.</p>
+                        </div>
+                </footer>
+    </section>
+</div>
+    <!---------------------SECTION home END----------------------->
+    <!---------------------About section start------->
+<div id="top-screen" class="ms-container">
+    <section id="about-section">
+        
+            <nav class="nav nav-about">
+                <div class="logo logo-about">
+                    <img src="./images/logo-light.png" alt="Logo">
+                </div>
+                <div class="hamburger hamburger-about">
+                    <div class="line1"></div>
+                    <div class="line2"></div>
+                    <div class="line3"></div>
+                </div>
+                    <ul class="navbar navbar-about">
+                        <li>
+                            <a href="javascript:void(0)" class="ms-nav-link" data-ms-target="center-screen" data-ms-exit-animation="topright" data-ms-enter-animation="bottomleft">Home</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" class="ms-nav-link" data-ms-target="bottom-screen" data-ms-exit-animation="bottomright" data-ms-enter-animation="bottomleft">About</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" class="ms-nav-link" data-ms-target="right-screen" data-ms-exit-animation="bottomright" data-ms-enter-animation="topleft">Projects</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" class="ms-nav-link" data-ms-target="left-screen" data-ms-exit-animation="topleft" data-ms-enter-animation="bottomright">Contact</a>
+                        </li>
+                    </ul>
+               
+            </nav>
+        
+            <div class="scroll-down scroll-sticky">
+                <p  class="scroll-sticky">Scroll Down</p>
+                <i class="fa-sharp fa-solid fa-angle-down"></i>
+            </div>
+                
+                
+            
+        
+            <div class="let-text">   
+                    <h2>Let's get to know each other</h2>
+            </div>
+        <div class="grid-text-img" id="grid-img">
+                <div class='text demo-text'>
+                     <h2><span class="art-text">WITHOUT&nbsp;</span><span class="art1-text art" data-text="ART">ART</span>&nbsp;<span class="art-text">&nbsp;THERE IS NO&nbsp;</span><span class="art2-text art" data-text="IMAGINATIONS">IMAGINATIONS</span></h2> 
+                </div>
+              <section class='demo-gallery'>
+                <ul class='wrapper demo-gallery1'>
+                  <li>
+                    <img height='874' src='https://source.unsplash.com/random/1240x874?sig=1' width='1240'>
+                  </li>
+                  <li>
+                    <img height='874' src='https://source.unsplash.com/random/1240x874?sig=155' width='1240'>
+                  </li>
+                  <li>
+                    <img height='874' src='https://source.unsplash.com/random/1240x874?sig=178' width='1240'>
+                  </li>
+                  <li>
+                    <img height='874' src='https://source.unsplash.com/random/1240x874?sig=160' width='1240'>
+                  </li>
+                </ul>
+              </section>
+              <section class='demo-gallery'>
+                <ul class='wrapper demo-gallery2'>
+                  <li>
+                    <img height='874' src='https://source.unsplash.com/random/1240x874?sig=168' width='1240'>
+                  </li>
+                  <li>
+                    <img height='874' src='https://source.unsplash.com/random/1240x874?sig=126' width='1240'>
+                  </li>
+                  <li>
+                    <img height='874' src='https://source.unsplash.com/random/1240x874?sig=110' width='1240'>
+                  </li>
+                  <li>
+                    <img height='874' src='https://source.unsplash.com/random/1240x874?sig=126' width='1240'>
+                  </li>
+                </ul>
+              </section>
+              <section class='demo-gallery'>
+                <ul class='wrapper demo-gallery3'>
+                  <li>
+                    <img height='874' src='https://source.unsplash.com/random/1240x874?sig=160' width='1240'>
+                  </li>
+                  <li>
+                    <img height='874' src='https://source.unsplash.com/random/1240x874?sig=191' width='1240'>
+                  </li>
+                  <li>
+                    <img height='874' src='https://source.unsplash.com/random/1240x874?sig=51' width='1240'>
+                  </li>
+                  <li>
+                    <img height='874' src='https://source.unsplash.com/random/1240x874?sig=182' width='1240'>
+                  </li>
+                </ul>
+              </section>
+            </div>
+        
+        
+        <section class="about">
+            <div id="about-title" class="about-title">
+                <div class="about-me-text">
+                    <h2 class="about-me-text-h2">About me</h2>
+                </div>
+                <div class="ren-image">
+                    <img class="ren-image-child" src="./images/edited3.png" alt="reniel-image">
+                </div>
+            </div>
+            <div class="about-pages">
+                <div class="about-box1">
+                    <div class="box1-parent">
+                        <div class="about-header-text1">
+                            <h2 class="reveal-text-first reniel-header">Hi! I am Reniel</h2>
+                            <br>
+                            <h2 class="reveal-text-first">Front-End</h2>
+                            <h2 class="reveal-text-first">Developer</h2>
+                        </div>
+                        <div class="about-header-paragraph">
+                            <p class="reveal-text-first-paragraph">I am an amateur Front-end Developer & UI Developer. Focused on creating things with interactions and animations. With a knack for turning problems and opportunities into user-driven strategic solutions with delightful and intuitive interface design. </p><br>
+                            <p class="reveal-text-first-paragraph">I enjoy spending time fixing minor details and learning new things about web development, particularly front-end and UI development, in order to improve my skills and knowledge. Also I like working in a team, you'll learn faster and much more. “As the saying goes, two heads are better than one.</p><br>
+                            <p class="reveal-text-first-paragraph">Sometimes I make mistakes, but those mistakes teach me how to make it better next time.</p>
+                        </div>
+                    </div>
+                </div>
+                <!---------BOX 2 START-->
+                <div class="about-box2">
+                    <div class="box2-parent">
+                        <div class="about-header-text2">
+                            <h2 class="reveal-text-second">Why me?</h2>
+                        </div>
+                        <div class="about-header-paragraph2">
+                            <p class="reveal-text-second-paragraph">I am a fast learner and am willing to learn more for the sake of the company. My goal is to help small and medium-sized companies to grow their audience. I can make your website responsive. I can make a website that meets your standards with quality and clean code.</p><br>
+                            <p class="reveal-text-second-paragraph">Moreover, I am a creative problem solver who is always up for a challenge. I am a quick learner who is always eager to keep up with the latest trends and technologies in the world of web development. I am also an excellent communicator who is able to work well in a team environment.</p><br>
+                            <p class="reveal-text-second-paragraph">I am a highly motivated individual who is passionate about web development. I take pride in my work and I am always striving to improve my skills and knowledge. I have a strong work ethic and I am able to work under pressure and meet deadlines.</p><br>
+                            <p class="reveal-text-second-paragraph">I believe that my skills, experience, and passion for web development make me a valuable asset to your organization. I am confident that I would be able to make a significant contribution to your team, and I would welcome the opportunity to discuss my qualifications in more detail.</p><br>
+                            <p class="reveal-text-second-paragraph">Let's work together to create game-changing experiences
+                                that will take your brand from bland to buzzworthy</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="about-responsive">
+            <div class="box1-parent hidden">
+                <div class="about-header-text1 active">
+                    <h2 class="reveal-text-first reniel-header active">Hi! I am Reniel</h2>
+                    <br>
+                    <h2 class="reveal-text-first active">Front-End</h2>
+                    <h2 class="reveal-text-first active">Developer</h2>
+                </div>
+                <div class="about-header-paragraph">
+                    <p class="reveal-text-first-paragraph active">I am an amateur Front-end Developer & UI Developer. Focused on creating things with interactions and animations. With a knack for turning problems and opportunities into user-driven strategic solutions with delightful and intuitive interface design. </p><br>
+                    <p class="reveal-text-first-paragraph active">I enjoy spending time fixing minor details and learning new things about web development, particularly front-end and UI development, in order to improve my skills and knowledge. Also I like working in a team, you'll learn faster and much more. “As the saying goes, two heads are better than one.</p><br>
+                    <p class="reveal-text-first-paragraph active">Sometimes I make mistakes, but those mistakes teach me how to make it better next time.</p>
+                </div>
+            </div>
+            <div class="box2-parent hidden">
+                <div class="about-header-text2">
+                    <h2 class="reveal-text-second active">Why me?</h2>
+                </div>
+                <div class="about-header-paragraph2">
+                    <p class="reveal-text-second-paragraph active">I am a fast learner and am willing to learn more for the sake of the company. My goal is to help small and medium-sized companies to grow their audience. I can make your website responsive. I can make a website that meets your standards with quality and clean code.</p><br>
+                    <p class="reveal-text-second-paragraph active">Moreover, I am a creative problem solver who is always up for a challenge. I am a quick learner who is always eager to keep up with the latest trends and technologies in the world of web development. I am also an excellent communicator who is able to work well in a team environment.</p><br>
+                    <p class="reveal-text-second-paragraph active">I am a highly motivated individual who is passionate about web development. I take pride in my work and I am always striving to improve my skills and knowledge. I have a strong work ethic and I am able to work under pressure and meet deadlines.</p><br>
+                    <p class="reveal-text-second-paragraph active">I believe that my skills, experience, and passion for web development make me a valuable asset to your organization. I am confident that I would be able to make a significant contribution to your team, and I would welcome the opportunity to discuss my qualifications in more detail.</p><br>
+                    <p class="reveal-text-second-paragraph active">Let's work together to create game-changing experiences
+                        that will take your brand from bland to buzzworthy</p>
+                </div>
+            </div>
+        </section>
+        <section class="about-skills">
+            <div class="skills-text active hidden">
+                    <h2 class="skills-header active">Skills</h2>
+            </div>
+            <div class="about-skills-parent">
+                
+                <dl>
+                    <div class="hidden">
+                        <dt><i class="fa-brands fa-html5"></i>HTML</dt>
+                        <dd>I try to keep markup with semantics and accessibility in mind.
+                            I am currently learning WAI-ARIA.</dd>
+                    </div>
+                    <div class="hidden">
+                        <dt><i class="fa-brands fa-css3-alt"></i>CSS</dt>
+                        <dd>From basic styling, coding using variables, functions, etc. is possible with CSS. I'm currently learning Sass.</dd>
+                    </div>
+                    <div class="hidden">
+                        <dt><i class="fa-brands fa-square-js"></i>JavaScript</dt>
+                        <dd>
+                            It is possible to implement frequent UIs such as cursors, tabs, accordions, and modals. I'm currently learning native notation and mechanics.</dd>
+                    </div>
+                    <div class="hidden">
+                        <dt><i class="fa-brands fa-react"></i>React Js</dt>
+                        <dd>
+                            I use React for building interactive user interfaces and web applications quickly and efficiently with significantly less code than you would with vanilla JavaScript. And I'm still learning it.</dd>
+                    </div>
+                    <div class="hidden">
+                        <dt><i class="fa-brands fa-git-alt"></i>Git / GitHub</dt>
+                        <dd>When creating a personal site or blog site, we manage it on GitHub. I have no experience using it with multiple people, and I am practicing pseudo team development to learn a practical flow.</dd>
+                    </div>
+                    <div class="hidden">
+                        <dt><i class="fa-brands fa-figma"></i>Designing Tools</dt>
+                        <dd>
+                            I have designing experience from Photoshop, XD and Figma. The design of this site uses Figma.</dd>
+                    </div>
+                </dl>
+            </div>
+        </section>
+        <div class="scroll-up scroll-sticky">
+            <i class="fa-sharp fa-solid fa-angle-up"></i>
+            <a href="#"><p>Tap to Scroll Up</p></a>
+        </div>
+        <footer class="footer">
+                <div class="copyright">
+                    <p>Copyright &copy;2023 MabsrenCode. All rights reserved.</p>
+                </div>
+        </footer>
+    </section>
+</div>
+    <!---------------------About section start------->
+    <!---------------------Projects section start------->
+<div id="right-screen" class="ms-container">
+    <section id="projects-section">
+        
+            <nav class="nav nav-projects">
+                <div class="logo logo-projects">
+                    <img src="./images/logo-light.png" alt="Logo">
+                </div>
+                
+                    <ul class="navbar">
+                        <li>
+                            <a href="javascript:void(0)" class="ms-nav-link" data-ms-target="center-screen" data-ms-exit-animation="topright" data-ms-enter-animation="bottomleft">Home</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" class="ms-nav-link" data-ms-target="top-screen" data-ms-exit-animation="bottomright" data-ms-enter-animation="bottomleft">About</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" class="ms-nav-link" data-ms-target="right-screen" data-ms-exit-animation="left" data-ms-enter-animation="right">Projects</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" class="ms-nav-link" data-ms-target="left-screen" data-ms-exit-animation="topleft" data-ms-enter-animation="bottomright">Contact</a>
+                        </li>
+                    </ul>
+                
+            </nav>
+            <!-- <aside>
+                <ul>
+                    <li>Projects 1</li>
+                    <li>Projects 2</li>
+                    <li>Projects 3</li>
+                </ul>
+            </aside> -->
+            <section class="projects-header">
+                <div class="scroll-down scroll-sticky">
+                    <p  class="scroll-sticky">Scroll Down</p>
+                    <i class="fa-sharp fa-solid fa-angle-down"></i>
+                </div>
+                    <h2 data-text="Portfolio">Portfolio</h2>
+                    <!-- <h4>2022-2023</h4> -->
+            </section>
+            <section class="projects-gallery">
+                <div class="projects-container">
+                    <div class="projects-container-content">
+                        <h3>TIC TAC TOE GAME</h3>
+                        <h4 class="project-number">PROJECT 1</h4>
+                        <p class="projects-content-paragraph">My first responsive game that I created through HTML, CSS, JavaScript.
+                            It was undoubtedly challenging for me to create a game like this,
+                            as I had to learn topics that aren't taught to 2nd year college students.
+                            For instance, I studied and engaged myself in using arrays, 
+                            if-else statement, and various types of looping.
+                        </p>
+                        <div class="projects-content-icons">
+                            <a href="https://github.com/Mabsrencode/tictactoe" target="_blank">Code<i class="fa-brands fa-github"></i></a>
+                            <a href="https://mabsrencode.github.io/tictactoe/" target="_blank">Live Demo<i class="fa-solid fa-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+                    <div class="projects-container-img">
+                        <img src="./images/portfolio project images/Tictactoe.png" alt="">
+                    </div>
+                </div>
+            </section>
+            <section class="projects-gallery">
+                <div class="projects-container">
+                    <div class="projects-container-content">
+                        <h3>CALENDAR 2022</h3>
+                        <h4 class="project-number">PROJECT 2</h4>
+                        <p class="projects-content-paragraph">My first responsive game that I created through HTML, CSS, JavaScript.
+                            It was undoubtedly challenging for me to create a game like this,
+                            as I had to learn topics that aren't taught to 2nd year college students.
+                            For instance, I studied and engaged myself in using arrays, 
+                            if-else statement, and various types of looping.
+                        </p>
+                        <div class="projects-content-icons">
+                            <a href="" target="_blank">Code<i class="fa-brands fa-github"></i></a>
+                            <a href="" target="_blank">Live Demo<i class="fa-solid fa-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+                    <div class="projects-container-img">
+                        <img src="./images/portfolio project images/calendar 2022.png" alt="">
+                    </div>
+                </div>
+            </section>
+            <section class="projects-gallery">
+                <div class="projects-container">
+                    <div class="projects-container-content">
+                        <h3>FOOD SERVICE</h3>
+                        <span>LANDING PAGE</span>
+                        <h4 class="project-number">PROJECT 3</h4>
+                        <p class="projects-content-paragraph">My first responsive game that I created through HTML, CSS, JavaScript.
+                            It was undoubtedly challenging for me to create a game like this,
+                            as I had to learn topics that aren't taught to 2nd year college students.
+                            For instance, I studied and engaged myself in using arrays, 
+                            if-else statement, and various types of looping.
+                        </p>
+                        <div class="projects-content-icons">
+                            <a href="" target="_blank">Code<i class="fa-brands fa-github"></i></a>
+                            <a href="" target="_blank">Live Demo<i class="fa-solid fa-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+                    <div class="projects-container-img">
+                        <img src="./images/portfolio project images/foodservice.png" alt="">
+                    </div>
+                </div>
+            </section>
+    </section>
+</div>
+    <!---------------------projects section end------->
+    <!---------------------contact section start------->
+<div id="left-screen" class="ms-container">
+    <section id="contact-section">
+        
+            <nav class="nav">
+                <div class="logo logo-contact">
+                    <img src="./images/logo-light.png" alt="Logo">
+                </div>
+                
+                    <ul class="navbar">
+                        <li>
+                            <a href="javascript:void(0)" class="ms-nav-link" data-ms-target="center-screen" data-ms-exit-animation="topright" data-ms-enter-animation="bottomleft">Home</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" class="ms-nav-link" data-ms-target="top-screen" data-ms-exit-animation="bottomright" data-ms-enter-animation="bottomleft">About</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" class="ms-nav-link" data-ms-target="right-screen" data-ms-exit-animation="left" data-ms-enter-animation="right">Projects</a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" class="ms-nav-link" data-ms-target="left-screen" data-ms-exit-animation="topleft" data-ms-enter-animation="bottomright">Contact</a>
+                        </li>
+                    </ul>
+                
+            </nav>
+        
+        <div class="contact-container">
+            <!--<div class="center">
+                <canvas height="300" width="600" id="canvas"></canvas>
+                <div class="subtext">
+                    <span class="quip"></span>
+                    <div class="err-btn">Generate An Error Report?</div>
+                </div>
+              </div>
+              <div class="err-rprt-cvr">
+                <div class="prog">
+                  <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66">
+                    <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+                  </svg><br /><br />
+                  <span class="loadtext">Gathering Data...</span>
+                </div>
+              </div>-->
+              <div class="form-class">
+                <form method="post" action="">
+                    
+                </form>
+              </div>
+        </div>
+    </section>
+</div>
+    <!---------------------About section start------->
+    <script defer>
+    gsap.registerPlugin(ScrollTrigger);
+
+    const showAnim = gsap.from('.nav-about', { 
+        yPercent: -100,
+        paused: true,
+        duration: 0.2
+      }).progress(1);
+      
+      ScrollTrigger.create({
+        start: "top top",
+        end: 99999,
+        onUpdate: (self) => {
+          self.direction === -1 ? showAnim.play() : showAnim.reverse()
+        }
+      });
+      const showAnimate = gsap.from('.nav-projects', { 
+        yPercent: -100,
+        paused: true,
+        duration: 0.2
+      }).progress(1);
+      
+      ScrollTrigger.create({
+        start: "top top",
+        end: 99999,
+        onUpdate: (self) => {
+          self.direction === -1 ? showAnimate.play() : showAnimate.reverse()
+        }
+      });
+      
+
+      $(document).ready(function() { 
+                MultiScreen.init(); 
+                $('#topleft-via-top').click(function () {
+                    MultiScreen.switch_screens(
+                        {target_id: 'top-screen', enter_animation_command: 'top', exit_animation_command: 'bottom', chain_animation_options: 
+                            {target_id: 'topleft-screen', enter_animation_command: 'left', exit_animation_command: 'right'}
+                        });
+                });
+        });
+      </script>
+    <script type="text/javascript" src="./scripts/app.js"></script>
+    <script type="text/javascript" src="./scripts/index.js"></script>
+    <script type="text/javascript" src="./scripts/script.js"></script>
+    <script type="text/javascript" src="./scripts/multi-screen.js"></script>
+    
+    <script type="text/javascript" src="./scripts/projects.js"></script>
+    <script type="text/javascript" src="./scripts/responsive.js"></script>
+    
+</body>
 </html>
